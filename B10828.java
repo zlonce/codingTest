@@ -15,6 +15,10 @@ class Node{
 class Stack{
     private Node top;
 
+    public void init(){
+      
+    }
+
     public void push(int data){
       Node newNode = new Node(data);
       newNode.prev = top;
@@ -32,13 +36,13 @@ class Stack{
    }
 
     public boolean empty(){
-      if(top.prev == null) return true;
+      if(top == null) return true;
       else return false;
     }
  
     public void size(){
       int size = 0;
-      for(Node curr = top; curr.prev != null; curr = curr.prev){
+      for(Node curr = top; curr != null; curr = curr.prev){
         size ++;
       }
       System.out.println(size);
@@ -59,7 +63,7 @@ public class B10828{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.valueOf(br.readLine());
     Stack myStack = new Stack();
-
+    myStack.init();
     for(int i = 0; i < N; i++){
       String[] input = br.readLine().split(" ");
       String oder = input[0];
