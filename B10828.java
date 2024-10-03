@@ -12,66 +12,68 @@ class Node{
    }
 }
 
-private class Stack{
-  private Node top;
+class Stack{
+    private Node top;
 
-  public void push(int data){
-     Node newNode = new Node(data);
-     newNode.prev = top;
-     top = newNode;
-  }
+    public void push(int data){
+      Node newNode = new Node(data);
+      newNode.prev = top;
+      top = newNode;
+    }
 
-  public void pop(){
-    if(empty()){
-      System.out.println(-1);
-    }
-    else{System.out.println(top.data);
-    top.prev = top;
-    }
-  }
+    public void pop(){
+      if(empty()){
+        System.out.println(-1);
+      }
+      else{
+        System.out.println(top.data);
+        top = top.prev;
+     }
+   }
 
-  public void empty(){
-    if(top.prev == null){
-      System.out.println(1);
-    }else{
-      System.out.println(0);
+    public boolean empty(){
+      if(top.prev == null) return true;
+      else return false;
     }
-  }
  
-  public void size(){
-    int size = 0;
-    for(Node curr = top; curr.prev != null; curr = curr.prev){
-      size ++;
-    }
-    System.out.println(size);
-  }
+    public void size(){
+      int size = 0;
+      for(Node curr = top; curr.prev != null; curr = curr.prev){
+        size ++;
+      }
+      System.out.println(size);
+   }
   
-  public void top(){
-    if(empty()){
-      System.out.println(-1);
-      return -1;
+    public void top(){
+      if(empty()){
+        System.out.println(-1);
+     }
+      else System.out.println(top.data);
     }
-    System.out.println(top.data);
-  }
 }
+
+
 
 public class B10828{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.valueOf(br.readLine());
-    Node myStack = new Stack();
+    Stack myStack = new Stack();
 
     for(int i = 0; i < N; i++){
       String[] input = br.readLine().split(" ");
       String oder = input[0];
 
       if(oder.equals("push")){
-        int num = integer.parseInt(input[1]);
+        int num = Integer.parseInt(input[1]);
         myStack.push(num);
       }
       else if(oder.equals("pop")) myStack.pop();
       else if(oder.equals("size")) myStack.size();
-      else if(oder.equals("empty")) myStack.empty();
+      else if(oder.equals("empty")){
+        if(myStack.empty()) System.out.println(1);
+        else System.out.println(0);
+      }
       else if(oder.equals("top")) myStack.top();
     }
   }
